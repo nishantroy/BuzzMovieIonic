@@ -65,9 +65,6 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
       };
 
       $scope.gotoCreateAccount = function () {
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
         $state.transitionTo('createAccount');
       };
 
