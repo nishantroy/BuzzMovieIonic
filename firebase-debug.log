@@ -1,0 +1,17 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/Cellar/node/5.7.0/bin/node /usr/local/bin/firebase deploy
+[debug] Platform:     darwin
+[debug] Node Version: v5.7.0
+[debug] Time:         Sun Apr 24 2016 05:17:11 GMT-0400 (EDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/buzzmovieionic/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/buzzmovieionic/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'buzzmovieionic'...
+[info] 
+[info] i  deploying hosting
+[info] i  preparing www directory for upload...
+[debug] >>> HTTP REQUEST PUT https://deploy.firebase.com/firebase/buzzmovieionic/uploads/-KG6YjM-rEELgErfx4nc?token=XXX&fileCount=133&message= 
