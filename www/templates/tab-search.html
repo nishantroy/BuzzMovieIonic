@@ -8,6 +8,12 @@
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" placeholder="Search" ng-model="data.moviename">
+        <a ng-if="data.moviename!= ''"
+           on-touch="data.moviename=''">
+
+          <i class="icon ion-ios-close placeholder-icon"></i>
+
+        </a>
       </label>
 
     <br>

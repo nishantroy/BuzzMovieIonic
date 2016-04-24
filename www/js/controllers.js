@@ -40,7 +40,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     })
 
   .controller('MovieCtrl',
-    function ($scope, Movie, $state, AuthData, UsersRef) {
+    function ($scope, Movie, $state, AuthData, UsersRef, $timeout) {
       // $scope.$on('$ionicView.enter', function () {
       $scope.input = Movie.moviedata;
       console.log($scope.input);
@@ -52,15 +52,15 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       $scope.rating.rate = 0;
       $scope.rating.max = 10;
 
-      ref.once("value", function (snapshot) {
-        if (snapshot.exists()) {
-          console.log("Found!");
-
-          $scope.$apply(function () {
+      $timeout(function () {
+        ref.once("value", function (snapshot) {
+          if (snapshot.exists()) {
+            console.log("Found!");
             $scope.rating.rate = snapshot.child("Rating").val();
-          })
-        }
+          }
+        });
       });
+
 
       $scope.save = function () {
         console.log($scope.rating.rate);
@@ -168,19 +168,20 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
   ])
 
   .controller('RatingsCtrl',
-    function ($scope, UsersRef, AuthData, $state) {
+    function ($scope, UsersRef, AuthData, $state, $timeout) {
       $scope.$on('$ionicView.enter', function () {
         $scope.movies = {};
         var ref = UsersRef.child(AuthData.uid).child("Movies");
 
-        ref.on("value", function (snapshot) {
-          if (snapshot.exists()) {
-            console.log("Found!");
+        $timeout(function () {
+          ref.on("value", function (snapshot) {
+            if (snapshot.exists()) {
+              console.log("Found!");
 
-            $scope.$apply(function () {
               $scope.movies = snapshot.val();
-            })
-          }
+            }
+
+          });
         });
 
       });
@@ -192,10 +193,6 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
         ref.on("value", function (snapshot) {
           if (snapshot.exists()) {
             console.log("Found!");
-
-            $scope.$apply(function () {
-              $scope.movies = snapshot.val();
-            })
           }
 
         });
