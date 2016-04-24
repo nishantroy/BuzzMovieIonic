@@ -2,7 +2,12 @@ Buzz Movie Search - Ionic
 =========================
 
 Allows users to search for and rate movies. Built in Ionic to allow cross-platform use. (Currently under production).
-##To Use This App
+
+##To try it out
+
+The app is [hosted here](https://buzzmovieionic.firebaseapp.com "Buzz Movie Ionic")
+
+##To make changes/Download and run the app
 
 - Make sure you have ionic installed:
     ```bash
