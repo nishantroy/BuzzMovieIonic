@@ -6,13 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
-
-  .factory("Auth", ["$firebaseAuth",
-    function($firebaseAuth) {
-      var ref = new Firebase("https://buzzmovieionic.firebaseio.com");
-      return $firebaseAuth(ref);
-    }
-  ])
+  
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -37,6 +31,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+    
+    .state('movieDetails', {
+      url: '/movieDetails',
+      templateUrl: 'templates/movieDetails.html',
+      controller: 'MovieCtrl'
+    })
 
     .state('login', {
       url: '/login',

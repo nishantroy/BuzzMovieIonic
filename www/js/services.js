@@ -1,5 +1,17 @@
 angular.module('starter.services', [])
 
+  .factory("Auth", ["$firebaseAuth",
+    function($firebaseAuth) {
+      var ref = new Firebase("https://buzzmovieionic.firebaseio.com");
+      return $firebaseAuth(ref);
+    }
+  ])
+
+  .factory("Movie", function() {
+    moviedata = {};
+    return moviedata;
+  })
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
