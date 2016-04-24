@@ -69,7 +69,8 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       $scope.goBack = function () {
         console.log($scope.rating.rate);
         ref.update({
-          Rating: $scope.rating.rate
+          Rating: $scope.rating.rate,
+          Image: $scope.input.Poster
         });
         $state.transitionTo('tab.search')
       }
