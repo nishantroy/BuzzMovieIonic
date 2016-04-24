@@ -1,7 +1,27 @@
 <ion-view view-title={{input.Title}} cache-view="false">
   <ion-content class="padding">
+
+    <!--Image div-->
     <div class="col text-center">
-        <button class="button button-assertive" ng-click="goBack()"> Back </button>
+      <img src={{input.Poster}}>
+    </div>
+
+    <!--Details (plot, cast, etc.) div-->
+    <div class="col text-left">
+      <u><h3> Plot </h3></u>
+      <p> {{input.Plot}}</p>
+
+      <u><h3>Cast</h3></u>
+      <p> {{input.Actors}}</p>
+
+      <u><h3>IMDB Rating</h3></u>
+      <p> {{input.imdbRating}}</p>
+    </div>
+
+
+    <!--Back button div-->
+    <div class="col text-center">
+      <button class="button button-assertive" ng-click="goBack()"> Back</button>
     </div>
   </ion-content>
 </ion-view>

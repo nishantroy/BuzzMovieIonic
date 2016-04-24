@@ -10,15 +10,26 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
         var url2 = "&y=&plot=full&r=json";
 
         var url = url1 + $scope.data.moviename + url2;
+        var flag = false;
 
         $http.get(url)
           .success(function (data) {
             // console.log(data);
             Movie.moviedata = data;
-            $state.transitionTo('movieDetails')
+            if (data.Response == 'True') {
+              flag = true;
+            } else {
+              console.log("Movie not found!");
+              alert("Movie not found!");
+            }
           })
           .error(function (data) {
             console.log("ERROR");
+          })
+          .finally(function () {
+            if (flag) {
+              $state.transitionTo('movieDetails');
+            }
           });
 
       }
