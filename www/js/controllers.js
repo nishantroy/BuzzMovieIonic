@@ -43,7 +43,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
       };
     }])
 
-  .controller('LoginCtrl', ["$scope", "Auth", "$state",
+  .controller('LoginCtrl', ["$scope", "Auth", "$state", "$ionicHistory",
     function ($scope, Auth, $state, $ionicHistory) {
       $scope.data = {};
 
@@ -62,6 +62,13 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
           console.log("Authentication failed: " + error + "\n");
         })
 
+      };
+
+      $scope.gotoCreateAccount = function () {
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+        $state.transitionTo('createAccount');
       };
 
 
