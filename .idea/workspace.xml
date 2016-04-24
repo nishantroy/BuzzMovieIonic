@@ -86,17 +86,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tab-search.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tab-search.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/tab-search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="30">
+              <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="movieDetails.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="movieDetails.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/movieDetails.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -125,9 +125,9 @@
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/templates/tab-search.html" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/templates/movieDetails.html" />
+        <option value="$PROJECT_DIR$/www/templates/tab-search.html" />
       </list>
     </option>
   </component>
@@ -384,12 +384,12 @@
       <option name="presentableId" value="Default" />
       <updated>1461397157810</updated>
       <workItem from="1461397159237" duration="7503000" />
-      <workItem from="1461457128420" duration="12209000" />
+      <workItem from="1461457128420" duration="12365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19712000" />
+    <option name="totallyTimeSpent" value="19868000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -571,14 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -591,6 +583,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
           <folding />
         </state>
       </provider>
