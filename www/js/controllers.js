@@ -62,7 +62,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
         }
       });
 
-      $scope.goBack = function () {
+      $scope.save = function () {
         console.log($scope.rating.rate);
         if ($scope.rating.rate > 0) {
           ref.update({
@@ -70,8 +70,12 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             Image: $scope.input.Poster
           });
         }
-        $state.transitionTo('tab.search')
-      }
+        $state.transitionTo('tab.search');
+      };
+
+      $scope.cancel = function () {
+        $state.transitionTo('tab.search');
+      };
 
     })
 
