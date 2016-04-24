@@ -1,0 +1,20 @@
+<ion-view view-title="Movie Search">
+  <ion-content class="padding">
+    <h2 align="center">Welcome to Buzz Movie Search</h2>
+    <p align="center">
+      This is where you can search for movies.
+    </p>
+
+
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Search" ng-model="data.moviename">
+      </label>
+
+    <br> <br>
+
+    <div class = "col text-center">
+        <button class="button icon-left ion-ios-search button-assertive" ng-click="searchMovie()">Search</button>
+    </div>
+  </ion-content>
+</ion-view>

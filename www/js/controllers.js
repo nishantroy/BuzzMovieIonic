@@ -1,6 +1,25 @@
 angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
 
-.controller('DashCtrl', function($scope) {})
+.controller('SearchCtrl', function($scope, $http) {
+
+  $scope.data = {};
+
+  $scope.searchMovie = function() {
+    var url1 = "http://www.omdbapi.com/?t=";
+    var url2 = "&y=&plot=full&r=json";
+
+    var url = url1 + $scope.data.moviename + url2;
+
+    $http.get(url)
+      .success(function(data) {
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log("ERROR");
+      });
+
+  }
+})
 
   .controller('CreateAccountCtrl', ["$scope", "Auth", "$state", "$ionicHistory",
     function ($scope, Auth, $state, $ionicHistory) {
@@ -57,7 +76,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
           password: $scope.data.password
         }).then(function(authData) {
           console.log("Logged in as: " + authData.uid + "\n");
-          $state.transitionTo('tab.dash');
+          $state.transitionTo('tab.search');
         }).catch(function(error) {
           console.log("Authentication failed: " + error + "\n");
         })

@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
     })
-      
+
     .state('createAccount', {
       url: '/createAccount',
       templateUrl: 'templates/createAccount.html',
@@ -59,12 +59,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.search', {
+    url: '/search',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-search': {
+        templateUrl: 'templates/tab-search.html',
+        controller: 'SearchCtrl'
       }
     }
   })
