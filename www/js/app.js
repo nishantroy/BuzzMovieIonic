@@ -74,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-ratings': {
           templateUrl: 'templates/tab-ratings.html',
-          controller: 'ChatsCtrl'
+          controller: 'RatingsCtrl'
         }
       }
     })

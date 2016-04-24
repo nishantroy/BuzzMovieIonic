@@ -2,15 +2,15 @@
   <ion-nav-bar class="bar-assertive">
   </ion-nav-bar>
   <ion-content>
-    <!--TODO: Get list of movies from user node in Firebase, parse them and display here with picture, name and rating (Rating in stars if possible, otherwise just numbers-->
+    <!--todo-me: Get list of movies from user node in Firebase, parse them and display here with picture, name and rating (Rating in stars if possible, otherwise just numbers-->
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
+      <ion-item class="item item-avatar-left item-icon-right" ng-repeat="(movie, details) in movies">
+        <img ng-src="{{details.Image}}">
+        <h2>{{movie}}</h2>
+        <p>Your Rating: {{details.Rating}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+        <ion-option-button class="button-assertive" ng-click="remove(movie)">
           Delete
         </ion-option-button>
       </ion-item>

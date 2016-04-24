@@ -61,10 +61,6 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           })
         }
       });
-      // });
-
-
-// });
 
       $scope.goBack = function () {
         console.log($scope.rating.rate);
@@ -166,6 +162,43 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       };
     }
   ])
+
+  .controller('RatingsCtrl',
+    function ($scope, UsersRef, AuthData, $state) {
+      $scope.$on('$ionicView.enter', function () {
+        $scope.movies = {};
+        var ref = UsersRef.child(AuthData.uid).child("Movies");
+
+        ref.on("value", function (snapshot) {
+          if (snapshot.exists()) {
+            console.log("Found!");
+
+            $scope.$apply(function () {
+              $scope.movies = snapshot.val();
+            })
+          }
+        });
+
+      });
+
+      $scope.remove = function (movie) {
+        var ref = UsersRef.child(AuthData.uid).child("Movies");
+        ref.child(movie).remove();
+
+        ref.on("value", function (snapshot) {
+          if (snapshot.exists()) {
+            console.log("Found!");
+
+            $scope.$apply(function () {
+              $scope.movies = snapshot.val();
+            })
+          }
+
+        });
+        $state.go($state.current, {}, {reload: true});
+      }
+    }
+  )
 
   .controller('ChatsCtrl', function ($scope, Chats) {
     // With the new view caching in Ionic, Controllers are only called
