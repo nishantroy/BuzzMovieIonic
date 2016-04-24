@@ -56,12 +56,12 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
         if (snapshot.exists()) {
           console.log("Found!");
 
-          $scope.$apply(function() {
+          $scope.$apply(function () {
             $scope.rating.rate = snapshot.child("Rating").val();
           })
         }
       });
-
+      // });
 
 
 // });
