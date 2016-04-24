@@ -11,6 +11,6 @@ Allows users to search for and rate movies. Built in Ionic to allow cross-platfo
     
 - Download the repository
 - cd to the project directory and run:
-  ```bash
+  ```
   $ ionic serve
   ```
