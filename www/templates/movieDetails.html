@@ -16,12 +16,15 @@
 
       <u><h3>IMDB Rating</h3></u>
       <p> {{input.imdbRating}}</p>
+
+      <u><h3>Your Rating</h3></u>
+      <rating ng-model="rating.rate" max="rating.max"></rating>
     </div>
 
 
     <!--Back button div-->
     <div class="col text-center">
-      <button class="button button-assertive" ng-click="goBack()"> Back</button>
+      <button class="button button-assertive" ng-click="goBack()"> Save Rating </button>
     </div>
   </ion-content>
 </ion-view>
