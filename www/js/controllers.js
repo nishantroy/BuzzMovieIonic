@@ -6,7 +6,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
       $scope.data = {};
 
       $scope.searchMovie = function () {
-        var url1 = "http://www.omdbapi.com/?t=";
+        var url1 = "https://www.omdbapi.com/?t=";
         var url2 = "&y=&plot=full&r=json";
 
         var url = url1 + $scope.data.moviename + url2;
@@ -31,7 +31,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router'])
       console.log($scope.input);
 
       // });
-      
+
       $scope.goBack = function () {
         $state.transitionTo('tab.search')
       }
