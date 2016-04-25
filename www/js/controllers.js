@@ -211,18 +211,31 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             }
           });
 
-          /*
-
-           $scope.authObj.$authWithOAuthPopup("facebook",{remember: "sessionOnly",scope: "email,user_friends"}).then(function(authData) {
-           console.log("Logged in as:", authData.uid);
-           }).catch(function(error) {
-           console.error("Authentication failed:", error);
-           });
-           */
           $state.transitionTo('tab.search');
         }).catch(function (error) {
           console.log(error);
         });
+      };
+
+      $scope.twitterLogin = function () {
+        Auth.$authWithOAuthPopup("twitter", {scope: "email"}).then(function (authData) {
+          console.log(authData);
+          var ref = new Firebase("https://buzzmovieionic.firebaseio.com/users");
+          ref.child(authData.uid).once("value", function (snapshot) {
+            if (!snapshot.exists()) {
+              ref.child(authData.uid).set({
+                Name: authData.twitter.displayName,
+                Email: authData.twitter.username,
+                Image: authData.twitter.profileImageURL
+              })
+            }
+          });
+          $state.transitionTo('tab.search');
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+
       };
 
       $scope.gotoCreateAccount = function () {
@@ -281,39 +294,36 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     }
   )
 
-
-
-
   .controller('ProfileCtrl', function ($scope, UsersRef, AuthData, $timeout) {
 
     // $scope.$on("$ionicView.beforeEnter", function () {
-      console.log("Entered!");
-      $scope.userInfo = {};
-      var ref = UsersRef.child(AuthData.uid);
-      $scope.userInfo.image = "img/Buzz.png";
+    console.log("Entered!");
+    $scope.userInfo = {};
+    var ref = UsersRef.child(AuthData.uid);
+    $scope.userInfo.image = "img/Buzz.png";
 
 
-      $timeout(function () {
-        ref.on("value", function (snapshot) {
-          if (snapshot.exists()) {
-            console.log("Found!");
+    $timeout(function () {
+      ref.on("value", function (snapshot) {
+        if (snapshot.exists()) {
+          console.log("Found!");
 
-            $scope.userInfo.name = snapshot.child("Name").val();
-            $scope.userInfo.major = snapshot.child("Major").val();
-            $scope.userInfo.email = snapshot.child("Email").val();
-            $scope.$apply();
-          }
-        });
-        ref.child("Image").on("value", function (snapshot) {
-          if (snapshot.exists()) {
-            console.log("Image found!");
-            $scope.userInfo.image = snapshot.val();
-            $scope.$apply();
-          }
-        })
+          $scope.userInfo.name = snapshot.child("Name").val();
+          $scope.userInfo.major = snapshot.child("Major").val();
+          $scope.userInfo.email = snapshot.child("Email").val();
+          $scope.$apply();
+        }
       });
-
+      ref.child("Image").on("value", function (snapshot) {
+        if (snapshot.exists()) {
+          console.log("Image found!");
+          $scope.userInfo.image = snapshot.val();
+          $scope.$apply();
+        }
+      })
     });
 
+  });
 
-  // });
+
+// });
