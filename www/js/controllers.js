@@ -238,6 +238,48 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
 
       };
 
+      $scope.githubLogin = function () {
+        Auth.$authWithOAuthPopup("github", {scope: "email"}).then(function (authData) {
+          console.log(authData);
+          var ref = new Firebase("https://buzzmovieionic.firebaseio.com/users");
+          ref.child(authData.uid).once("value", function (snapshot) {
+            if (!snapshot.exists()) {
+              ref.child(authData.uid).set({
+                Name: authData.github.displayName,
+                Email: authData.github.username,
+                Image: authData.github.profileImageURL
+              })
+            }
+          });
+          $state.transitionTo('tab.search');
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+
+      };
+
+      $scope.googleLogin = function () {
+        Auth.$authWithOAuthPopup("google", {scope: "email"}).then(function (authData) {
+          console.log(authData);
+          var ref = new Firebase("https://buzzmovieionic.firebaseio.com/users");
+          ref.child(authData.uid).once("value", function (snapshot) {
+            if (!snapshot.exists()) {
+              ref.child(authData.uid).set({
+                Name: authData.google.displayName,
+                Email: authData.google.email,
+                Image: authData.google.profileImageURL
+              })
+            }
+          });
+          $state.transitionTo('tab.search');
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+
+      };
+
       $scope.gotoCreateAccount = function () {
         $state.transitionTo('createAccount');
       };
