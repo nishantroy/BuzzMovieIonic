@@ -73,16 +73,36 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       var authData = AuthData;
       console.log(authData);
       var ref = UsersRef.child(authData.uid).child("Movies").child($scope.input.Title);
-
+      var moviesRef = new Firebase("https://buzzmovieionic.firebaseio.com/movies");
+      var alreadyRated = false;
+      moviesRef = moviesRef.child($scope.input.Title);
       $scope.rating = {};
       $scope.rating.rate = 0;
       $scope.rating.max = 10;
+      $scope.avgRating = 'n/a';
+      var oldRating = 0;
 
       $timeout(function () {
         ref.once("value", function (snapshot) {
           if (snapshot.exists()) {
+            alreadyRated = true;
             console.log("Found!");
             $scope.rating.rate = snapshot.child("Rating").val();
+            oldRating = $scope.rating.rate;
+          }
+        });
+      });
+
+      $timeout(function () {
+        moviesRef.once("value", function (snapshot) {
+          if (snapshot.exists()) {
+            console.log("Found avg Rating");
+            total = snapshot.child("Total").val();
+            num = snapshot.child("Users").val();
+            avg = total / num;
+            avg = Math.round(avg*10)/10;
+            console.log(avg);
+            $scope.input.avgRating = avg;
           }
         });
       });
@@ -95,6 +115,18 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             Rating: $scope.rating.rate,
             Image: $scope.input.Poster
           });
+
+          moviesRef.child("Total").transaction(function (current_val) {
+            return (current_val || 0) + $scope.rating.rate - oldRating;
+          });
+
+          if (!alreadyRated) {
+            moviesRef.child("Users").transaction(function (current_val) {
+              return (current_val || 0) + 1;
+            });
+          }
+
+
         }
         $state.transitionTo('tab.search');
       };
