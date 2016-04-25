@@ -25,6 +25,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           if (snapshot.exists()) {
             $scope.data.username = snapshot.child("Name").val();
             console.log($scope.data.username);
+            $scope.$apply();
           }
         });
       });
@@ -252,8 +253,31 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('AccountCtrl', function ($scope) {
-    $scope.settings = {
-      enableFriends: true
-    };
+  .controller('ProfileCtrl', function ($scope, UsersRef, AuthData, $timeout) {
+
+    $scope.$on("$ionicView.beforeEnter", function () {
+      console.log("Entered!");
+      $scope.userInfo = {};
+      var ref = UsersRef.child(AuthData.uid);
+      $scope.userInfo.image = "img/Buzz.png";
+
+
+      $timeout(function () {
+        ref.on("value", function (snapshot) {
+          if (snapshot.exists()) {
+            console.log("Found!");
+
+            $scope.userInfo.name = snapshot.child("Name").val();
+            $scope.userInfo.major = snapshot.child("Major").val();
+            $scope.userInfo.email = snapshot.child("Email").val();
+            $scope.$apply();
+          }
+
+        });
+      });
+
+    });
+
+
+
   });
