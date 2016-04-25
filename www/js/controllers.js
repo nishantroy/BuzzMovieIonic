@@ -198,17 +198,26 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
         //
         //   $state.transitionTo('tab.search');
         // });
-        Auth.$authWithOAuthPopup("facebook").then(function (authData) {
+        Auth.$authWithOAuthPopup("facebook", {scope: "email"}).then(function (authData) {
           console.log(authData);
           var ref = new Firebase("https://buzzmovieionic.firebaseio.com/users");
           ref.child(authData.uid).once("value", function (snapshot) {
             if (!snapshot.exists()) {
               ref.child(authData.uid).set({
-                Name: authData.facebook.displayName
+                Name: authData.facebook.displayName,
+                Email: authData.facebook.email
               })
             }
           });
 
+          /*
+
+           $scope.authObj.$authWithOAuthPopup("facebook",{remember: "sessionOnly",scope: "email,user_friends"}).then(function(authData) {
+           console.log("Logged in as:", authData.uid);
+           }).catch(function(error) {
+           console.error("Authentication failed:", error);
+           });
+           */
           $state.transitionTo('tab.search');
         }).catch(function (error) {
           console.log(error);

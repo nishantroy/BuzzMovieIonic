@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10eaa5d8-bd92-4a7f-86ce-6289ea7dae67" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/login.html" afterPath="$PROJECT_DIR$/www/templates/login.html" />
     </list>
     <ignored path="buzzIonic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,9 +49,12 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="110" column="25" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+            <state relative-caret-position="-1267">
+              <caret line="200" column="60" selection-start-line="200" selection-start-column="60" selection-end-line="200" selection-end-column="60" />
               <folding>
+                <element signature="e#193#2021#0" expanded="false" />
+                <element signature="e#2118#3115#0" expanded="false" />
+                <element signature="e#3272#4850#0" expanded="false" />
                 <element signature="e#4017#4116#0" expanded="false" />
                 <element signature="e#4168#4843#0" expanded="false" />
                 <element signature="e#5027#5467#0" expanded="false" />
@@ -425,12 +428,12 @@
       <updated>1461397157810</updated>
       <workItem from="1461397159237" duration="7503000" />
       <workItem from="1461457128420" duration="21703000" />
-      <workItem from="1461527048085" duration="28496000" />
+      <workItem from="1461527048085" duration="29247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57702000" />
+    <option name="totallyTimeSpent" value="58453000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -535,6 +538,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#193#2021#0" expanded="false" />
+            <element signature="e#2118#3115#0" expanded="false" />
+            <element signature="e#3272#4850#0" expanded="false" />
             <element signature="e#4017#4116#0" expanded="false" />
             <element signature="e#4168#4843#0" expanded="false" />
             <element signature="e#5027#5467#0" expanded="false" />
@@ -713,9 +719,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="110" column="25" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+        <state relative-caret-position="-1267">
+          <caret line="200" column="60" selection-start-line="200" selection-start-column="60" selection-end-line="200" selection-end-column="60" />
           <folding>
+            <element signature="e#193#2021#0" expanded="false" />
+            <element signature="e#2118#3115#0" expanded="false" />
+            <element signature="e#3272#4850#0" expanded="false" />
             <element signature="e#4017#4116#0" expanded="false" />
             <element signature="e#4168#4843#0" expanded="false" />
             <element signature="e#5027#5467#0" expanded="false" />
