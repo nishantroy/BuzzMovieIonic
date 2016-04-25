@@ -20,8 +20,10 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
         }
       };
       ref = UsersRef.child(AuthData.uid);
+      console.log(AuthData.uid);
       $timeout(function () {
         ref.once("value", function (snapshot) {
+          console.log(snapshot.val());
           if (snapshot.exists()) {
             $scope.data.username = snapshot.child("Name").val();
             console.log($scope.data.username);
@@ -121,9 +123,6 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           password: $scope.data.password
         }).then(function (userData) {
           $scope.message = "User created with uid: " + userData.uid;
-          var user = {email: $scope.data.email};
-          var obj = {};
-          obj[userData.uid] = user;
           console.log("Message: " + $scope.message + "\n");
           ref.child(userData.uid).set({
             Name: $scope.data.name,
@@ -158,7 +157,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     }])
 
   .controller('LoginCtrl', ["$scope", "Auth", "$state", "$ionicHistory",
-    function ($scope, Auth, $state, $ionicHistory) {
+    function ($scope, Auth, $state) {
       $scope.data = {};
 
       $scope.loginUser = function () {
@@ -176,6 +175,44 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           console.log("Authentication failed: " + error + "\n");
         })
 
+      };
+
+      $scope.facebookLogin = function () {
+        // var ref = new Firebase("https://buzzmovieionic.firebaseio.com");
+        // ref.authWithOAuthPopup("facebook", function(error, authData) {
+        //   if (error) {
+        //     console.log("Login Failed!", error);
+        //   } else {
+        //     console.log("Authenticated successfully with payload:", authData);
+        //   }
+        // }).then(function() {
+        //   $timeout(function () {
+        //     ref.child("users").child(AuthData.uid).once("value", function (snapshot) {
+        //       if (!snapshot.exists()) {
+        //         ref.child("users").child(AuthData.uid).set({
+        //           Name: AuthData.facebook.displayName
+        //         });
+        //       }
+        //     });
+        //   });
+        //
+        //   $state.transitionTo('tab.search');
+        // });
+        Auth.$authWithOAuthPopup("facebook").then(function (authData) {
+          console.log(authData);
+          var ref = new Firebase("https://buzzmovieionic.firebaseio.com/users");
+          ref.child(authData.uid).once("value", function (snapshot) {
+            if (!snapshot.exists()) {
+              ref.child(authData.uid).set({
+                Name: authData.facebook.displayName
+              })
+            }
+          });
+
+          $state.transitionTo('tab.search');
+        }).catch(function (error) {
+          console.log(error);
+        });
       };
 
       $scope.gotoCreateAccount = function () {
@@ -211,7 +248,6 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
               console.log("Found!");
 
               $scope.movies = snapshot.val();
-              $scope.$apply();
             }
 
           });
@@ -234,28 +270,12 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     }
   )
 
-  .controller('ChatsCtrl', function ($scope, Chats) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
 
-    $scope.chats = Chats.all();
-    $scope.remove = function (chat) {
-      Chats.remove(chat);
-    };
-  })
 
-  .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
-  })
 
   .controller('ProfileCtrl', function ($scope, UsersRef, AuthData, $timeout) {
 
-    $scope.$on("$ionicView.beforeEnter", function () {
+    // $scope.$on("$ionicView.beforeEnter", function () {
       console.log("Entered!");
       $scope.userInfo = {};
       var ref = UsersRef.child(AuthData.uid);
@@ -270,14 +290,11 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             $scope.userInfo.name = snapshot.child("Name").val();
             $scope.userInfo.major = snapshot.child("Major").val();
             $scope.userInfo.email = snapshot.child("Email").val();
-            $scope.$apply();
           }
-
         });
       });
 
     });
 
 
-
-  });
+  // });
