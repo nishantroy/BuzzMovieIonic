@@ -1,20 +1,12 @@
 angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.rating'])
 
   .controller('SearchCtrl',
-    function ($scope, $http, Movie, $state, UsersRef, AuthData, $timeout, $ionicLoading) {
+    function ($scope, $http, Movie, $state, UsersRef, AuthData, $timeout) {
 
       $scope.data = {};
       $scope.data.username = "";
       ref = UsersRef.child(AuthData.uid);
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 200,
-        showDelay: 0
-      });
       $timeout(function () {
-        $ionicLoading.hide();
         ref.once("value", function (snapshot) {
           if (snapshot.exists()) {
             $scope.data.username = snapshot.child("Name").val();
@@ -57,7 +49,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     })
 
   .controller('MovieCtrl',
-    function ($scope, Movie, $state, AuthData, UsersRef, $timeout, $ionicLoading) {
+    function ($scope, Movie, $state, AuthData, UsersRef, $timeout) {
       // $scope.$on('$ionicView.enter', function () {
       $scope.input = Movie.moviedata;
       console.log($scope.input);
@@ -68,22 +60,15 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       $scope.rating = {};
       $scope.rating.rate = 0;
       $scope.rating.max = 10;
-      $ionicLoading.show({
-        template: '<ion-spinner class="larger"></ion-spinner>',
-        showBackdrop: false,
-        animation: 'fade-in',
-        maxWidth: 200,
-        showDelay: 0
-      });
+
       $timeout(function () {
-        $ionicLoading.hide();
         ref.once("value", function (snapshot) {
           if (snapshot.exists()) {
             console.log("Found!");
             $scope.rating.rate = snapshot.child("Rating").val();
           }
         });
-      }, 1000);
+      });
 
 
       $scope.save = function () {
@@ -198,17 +183,11 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
   ])
 
   .controller('RatingsCtrl',
-    function ($scope, UsersRef, AuthData, $state, $timeout, $ionicLoading) {
+    function ($scope, UsersRef, AuthData, $state, $timeout) {
       $scope.$on('$ionicView.enter', function () {
         $scope.movies = {};
         var ref = UsersRef.child(AuthData.uid).child("Movies");
-        $ionicLoading.show({
-          template: '<ion-spinner icon="ripple"></ion-spinner>',
-          showBackdrop: false,
-          animation: 'fade-in',
-          maxWidth: 200,
-          showDelay: 0
-        });
+
 
         $timeout(function () {
           ref.on("value", function (snapshot) {
@@ -219,8 +198,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             }
 
           });
-          $ionicLoading.hide();
-        }, 1000);
+        });
 
       });
 
