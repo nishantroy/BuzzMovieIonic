@@ -205,7 +205,8 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             if (!snapshot.exists()) {
               ref.child(authData.uid).set({
                 Name: authData.facebook.displayName,
-                Email: authData.facebook.email
+                Email: authData.facebook.email,
+                Image: authData.facebook.profileImageURL
               })
             }
           });
@@ -257,6 +258,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
               console.log("Found!");
 
               $scope.movies = snapshot.val();
+              $scope.$apply();
             }
 
           });
@@ -299,8 +301,16 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
             $scope.userInfo.name = snapshot.child("Name").val();
             $scope.userInfo.major = snapshot.child("Major").val();
             $scope.userInfo.email = snapshot.child("Email").val();
+            $scope.$apply();
           }
         });
+        ref.child("Image").on("value", function (snapshot) {
+          if (snapshot.exists()) {
+            console.log("Image found!");
+            $scope.userInfo.image = snapshot.val();
+            $scope.$apply();
+          }
+        })
       });
 
     });
