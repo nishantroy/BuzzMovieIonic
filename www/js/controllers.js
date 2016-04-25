@@ -19,7 +19,6 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           annyang.debug();
         }
       };
-      //todo-me Figure out how to add annyang into AngularJS and set up voice recognition for movie search and maybe switch tabs too.
       ref = UsersRef.child(AuthData.uid);
       $timeout(function () {
         ref.once("value", function (snapshot) {
@@ -199,7 +198,8 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
 
   .controller('RatingsCtrl',
     function ($scope, UsersRef, AuthData, $state, $timeout) {
-      $scope.$on('$ionicView.enter', function () {
+      $scope.$on("$ionicView.beforeEnter", function () {
+        console.log("Entered!");
         $scope.movies = {};
         var ref = UsersRef.child(AuthData.uid).child("Movies");
 
@@ -210,6 +210,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
               console.log("Found!");
 
               $scope.movies = snapshot.val();
+              $scope.$apply();
             }
 
           });
