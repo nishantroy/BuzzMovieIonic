@@ -1,25 +1,27 @@
 <ion-view view-title="Movie Search">
   <ion-nav-bar class="bar-assertive">
-    </ion-nav-bar>
+  </ion-nav-bar>
   <ion-content class="padding">
+    <h3 align="center">Hi, {{data.username}} !</h3>
     <h3 align="center">Welcome to Buzz Movie Search</h3>
 
 
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="Search" ng-model="data.moviename">
-        <a ng-if="data.moviename!= ''"
-           on-touch="data.moviename=''">
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-model="data.moviename">
+      <a ng-if="data.moviename!= ''"
+         on-touch="data.moviename=''">
 
-          <i class="icon ion-ios-close placeholder-icon"></i>
+        <i class="icon ion-backspace larger placeholder-icon"></i>
 
-        </a>
-      </label>
+      </a>
+    </label>
 
     <br>
 
-    <div class = "col text-center">
-        <button class="button icon-left ion-ios-search-strong button-dark button-large" ng-click="searchMovie()">Search</button>
+    <div class="col text-center">
+      <button class="button icon-left ion-ios-search-strong button-dark button-large" ng-click="searchMovie()">Search
+      </button>
     </div>
 
   </ion-content>
