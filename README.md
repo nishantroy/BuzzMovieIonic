@@ -1,7 +1,11 @@
 Buzz Movie Search - Ionic
 =========================
 
-Allows users to search for and rate movies. Built in Ionic to allow cross-platform use. (Currently under production).
+Allows users to search for and rate movies. Built in Ionic to allow cross-platform use.
+
+- Uses [OMDB API](omdbapi.com "OMDB API") to get movie data
+- Uses Annyang for voice recognition (credits to Tal Ater)
+- Uses Firebase for authentication and as a backend
 
 ##To try it out
 
