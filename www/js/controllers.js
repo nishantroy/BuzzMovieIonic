@@ -385,7 +385,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
     }
   )
 
-  .controller('ProfileCtrl', function ($scope, UsersRef, AuthData, $timeout) {
+  .controller('ProfileCtrl', function ($scope, UsersRef, AuthData, $timeout, $state) {
 
     // $scope.$on("$ionicView.beforeEnter", function () {
     console.log("Entered!");
@@ -413,6 +413,13 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
         }
       })
     });
+
+    $scope.logoutUser = function() {
+      var ref = new Firebase("https://buzzmovieionic.firebaseio.com");
+      ref.unauth();
+      console.log(ref.getAuth);
+      $state.transitionTo('login');
+    }
 
   });
 
