@@ -134,13 +134,13 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       $scope.cancel = function () {
         swal({
           title: 'Are you sure?',
-          text: "Your rating won't be saved!",
+          text: "Your rating won't be saved",
           type: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes!',
-          closeOnConfirm: false
+          confirmButtonText: 'Yes',
+          closeOnConfirm: true
         }).then(function(isConfirm) {
           if (isConfirm) {
             $state.transitionTo('tab.search');
