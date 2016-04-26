@@ -132,6 +132,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       };
 
       $scope.cancel = function () {
+        if ($scope.rating.rate > 0) {
         swal({
           title: 'Are you sure?',
           text: "Your rating won't be saved",
@@ -141,12 +142,14 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes',
           closeOnConfirm: true
-        }).then(function(isConfirm) {
+        }).then(function (isConfirm) {
           if (isConfirm) {
             $state.transitionTo('tab.search');
           }
         });
-
+      } else {
+          $state.transitionTo('tab.search');
+        }
       };
 
     })
@@ -218,7 +221,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           console.log("Logged in as: " + authData.uid + "\n");
           $state.transitionTo('tab.search');
         }).catch(function (error) {
-          console.log("Authentication failed: " + error + "\n");
+          swal("Authentication failed ", error, "error");
         })
 
       };
