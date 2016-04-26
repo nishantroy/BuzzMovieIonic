@@ -208,7 +208,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
   .controller('LoginCtrl', ["$scope", "Auth", "$state", "$ionicHistory",
     function ($scope, Auth, $state) {
       $scope.data = {};
-
+      $scope.data.image = "img/buzz.png";
       $scope.loginUser = function () {
         $scope.message = null;
         $scope.error = null;

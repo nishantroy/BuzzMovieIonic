@@ -1,5 +1,9 @@
 <ion-view view-title="Login">
   <ion-content class="padding">
+
+    <div class="col text-center">
+      <img ng-src="{{data.image}}">
+    </div>
     <div class="list list-inset">
       <label class="item item-input">
         <input type="email" placeholder="Email..." ng-model="data.email">
@@ -11,20 +15,21 @@
     </div>
 
     <button class="button button-dark button-block" ng-click="gotoCreateAccount()">Create Account</button>
-
-
+    
     <div class="button-bar">
-      <a class="button ion-social-facebook icon-left button-positive " ng-click="facebookLogin()"> Login with
-        Facebook
+      <a class="button ion-social-facebook icon-left button-positive " ng-click="facebookLogin()">
+        Facebook Login
       </a>
-      <a class="button ion-social-twitter icon-left button-calm" ng-click="twitterLogin()"> Login with
-        Twitter
+      <a class="button ion-social-twitter icon-left button-calm" ng-click="twitterLogin()">
+        Twitter Login
       </a>
-      <a class="button ion-social-github icon-left button-royal " ng-click="githubLogin()"> Login with
-        Github
+    </div>
+    <div class="button-bar">
+      <a class="button ion-social-github icon-left button-royal " ng-click="githubLogin()">
+        Github Login
       </a>
-      <a class="button ion-social-google icon-left button-assertive " ng-click="googleLogin()"> Login with
-        Google
+      <a class="button ion-social-googleplus icon-left button-assertive " ng-click="googleLogin()">
+        Google Login
       </a>
     </div>
 
