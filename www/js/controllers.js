@@ -34,7 +34,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       $scope.searchMovie = function () {
 
         if ($scope.data.moviename == undefined || $scope.data.moviename.trim() == "") {
-          alert("Please enter a movie name");
+          swal("No movie name found!", "Please enter a movie name", "warning");
         } else {
           var url1 = "https://www.omdbapi.com/?t=";
           var url2 = "&y=&plot=full&r=json";
@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
                 flag = true;
               } else {
                 console.log("Movie not found!");
-                alert("Movie not found!");
+                swal("Movie not found!", "Enter the full movie name", "error");
               }
             })
             .error(function (data) {
@@ -132,7 +132,21 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       };
 
       $scope.cancel = function () {
-        $state.transitionTo('tab.search');
+        swal({
+          title: 'Are you sure?',
+          text: "Your rating won't be saved!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes!',
+          closeOnConfirm: false
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            $state.transitionTo('tab.search');
+          }
+        });
+
       };
 
     })
@@ -172,14 +186,14 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
 
       $scope.checkData = function () {
         if ($scope.data.email == undefined) {
-          alert("Invalid Email!")
+          swal("Invalid Email!", "Please enter a valid email", "error");
         } else if ($scope.data.password == undefined || $scope.data.password.trim() == ""
           || $scope.data.password.length < 8) {
-          alert("Please enter a password at least 8 characters long!")
+          swal("Invalid Password!", "Please enter a password at least 8 characters long", "warning");
         } else if ($scope.data.major == undefined) {
-          alert("Please select a major");
+          swal("No major selected!", "Please select a major", "warning");
         } else if ($scope.data.name == undefined || $scope.data.name.trim() == "") {
-          alert("Please enter your name")
+          swal("No name found!", "Please enter your name", "error");
         } else {
           console.log("Email: " + $scope.data.email + " \n Password: " + $scope.data.password);
           $scope.createUser();
@@ -319,9 +333,9 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
 
       $scope.checkData = function () {
         if ($scope.data.email == undefined) {
-          alert("Invalid Email!")
+          swal("Invalid Email!", "Please enter a valid email", "error");
         } else if ($scope.data.password == undefined || $scope.data.password.trim() == "") {
-          alert("Please enter a password !")
+          swal("Invalid Password!", "Please enter a password", "error");
         } else {
           console.log("Email: " + $scope.data.email + " \n Password: " + $scope.data.password);
           $scope.loginUser();
