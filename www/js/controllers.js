@@ -221,7 +221,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
           console.log("Logged in as: " + authData.uid + "\n");
           $state.transitionTo('tab.search');
         }).catch(function (error) {
-          swal("Authentication failed ", error, "error");
+          swal("Authentication failed ", error + " ", "error");
         })
 
       };
