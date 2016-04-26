@@ -132,7 +132,7 @@ angular.module('starter.controllers', ['ionic', 'firebase', 'ui.router', 'ionic.
       };
 
       $scope.cancel = function () {
-        if ($scope.rating.rate > 0) {
+        if ($scope.rating.rate > 0 && $scope.rating.rate != oldRating) {
         swal({
           title: 'Are you sure?',
           text: "Your rating won't be saved",
